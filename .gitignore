@@ -1,0 +1,15 @@
+.vscode/
+
+# Audio files
+*.wav
+*.aif[f]
+
+# OS X junk
+.DS_Store
+
+# emacs
+*.scd~
+*.sc~
+*.~
+*~
+*.#*
