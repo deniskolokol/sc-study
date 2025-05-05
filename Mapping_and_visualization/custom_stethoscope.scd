@@ -22,12 +22,7 @@ s.waitForBoot {
     }.play;
 
     // GUI
-    var window = Window("Dual Osciliscope", 640@320).front
-    .onClose_({
-        sound.free;
-        bufferA.free;
-        bufferB.free;
-    });
+    var window = Window("Dual Osciliscope", 640@320);
     window.addFlowLayout;
     waveScope = ScopeView(window, 314@310).bufnum_(bufferA.bufnum);
     phaseScope = ScopeView(window, 314@310).bufnum_(bufferB.bufnum);
@@ -50,7 +45,14 @@ s.waitForBoot {
 
     waveScope.start;
     phaseScope.start;
+    window.front;
 
+    // Clean up.
+    window.onClose_({
+        sound.free;
+        bufferA.free;
+        bufferB.free;
+    });
     CmdPeriod.doOnce({
         window.close
     });
