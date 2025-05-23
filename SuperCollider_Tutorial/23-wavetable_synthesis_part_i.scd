@@ -1,3 +1,5 @@
+// Source: https://www.youtube.com/watch?v=8EK9sq_9gFI
+
 s.boot;
 s.scope;
 FreqScope.new;
@@ -26,7 +28,7 @@ b.sine3(
 );
 )
 
-{Osc.ar(b, MouseX.kr(10, 10000, 1)*[1, 2.01], mul: 0.2 ! 2)}.play
+{Osc.ar(b, MouseX.kr(10, 10000, 1) * [1, 2.01], mul: 0.2 ! 2)}.play
 
 
 // Using Env in wavetable synthesis
@@ -41,6 +43,7 @@ sig = env.asSignal(1024);
 wt = sig.asWavetable;
 b.loadCollection(wt);
 )
+
 
 // radomize everything:
 (

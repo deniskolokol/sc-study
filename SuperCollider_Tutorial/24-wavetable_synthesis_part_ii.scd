@@ -77,14 +77,15 @@ a.free
         1025,
         (0 ! 3) ++ [0, 0, 0, 1, 1, 1].scramble,
         {rrand(0, 2pi)} ! 9
-    )
+    ) / 4
 );
 ~tf = ~tf.normalize;
 ~tfBuf = Buffer.loadCollection(s, ~tf.asWavetableNoWrap)
 )
 
+
 (
-{
+a = {
     var sig, input;
     input = LFSaw.ar({120 * Rand(-0.1, 0.1).midiratio} ! 8);
     input = input * LFNoise1.kr(0.5 ! 8).range(0.1, 1);
@@ -92,6 +93,7 @@ a.free
     sig = Splay.ar(sig) * 0.3
 }.play
 )
+a.free;
 
 
 //
@@ -104,7 +106,6 @@ a.free
     arg x, old, i;
     old * ((cos(x*0.08) / 4) + 0.3);
 }, 0, 50pi).normalize;
-~tf.plot;
 ~tfBuf.loadCollection(~tf.asWavetableNoWrap);
 )
 
@@ -125,7 +126,7 @@ a.free
 {
     var sig, input, curve;
     curve = LFNoise1.kr(0.5).bipolar(4);
-    input = LFTri.ar({120 * Rand(-0.1, 0.1).midiratio}!8);
+    input = LFTri.ar({220 * Rand(-0.1, 0.1).midiratio}!8);
     input = input.lincurve(-1, 1, -1, 1, curve:curve);
     sig = Shaper.ar(~tfBuf, input);
     sig = Splay.ar(sig) * 0.3;
